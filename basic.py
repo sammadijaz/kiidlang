@@ -1,4 +1,10 @@
 #########################
+# CONSTANTS
+#########################
+
+DIGITS = '0123456789'
+
+#########################
 # TOKENS
 #########################
 
@@ -41,6 +47,8 @@ class Lexer:
         while self.current_char != None:
             if self.current_char in ' \t':
                 self.advance()
+            elif self.current_char in DIGITS:
+                tokens.append(self.make_number())    
             elif self.current_char == '+':
                 tokens.append(Token(TT_PLUS))
                 self.advance
@@ -61,5 +69,24 @@ class Lexer:
                 self.advance
 
         return tokens
+    
+    def make_number(self):
+        num_str = ''
+        dot_count = 0
+
+        while self.current_char != None and self.current_char in DIGITS + '.':
+            if self.current_char == '.':
+                if dot_count == 1: break
+                dot_count += 1
+                num_str += '.'
+            elif:
+                num_str += self.current_char
+
+                
+
+
+
+
+         
 
 
